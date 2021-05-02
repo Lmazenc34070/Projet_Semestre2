@@ -3,6 +3,7 @@ class Tableau08 extends Tableau{
     preload() {
         super.preload();
         this.load.image('platforms', 'assets/Plat_Sci_Fi1.png');
+        this.load.image('PlateformMouv', 'assets/Plat_Sci_Fi1.png');
         this.load.image('star', 'assets/AppleGold.png');
         this.load.image('ground', 'assets/Ground_Sci_fi.png');
         this.load.image('sky-2', 'assets/Front-three4.png');
@@ -50,7 +51,7 @@ class Tableau08 extends Tableau{
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
 
         this.platforms = this.physics.add.group();
-        this.platforms.create(850, 300, 'platforms');
+        // this.platforms.create(850, 300, 'platforms');
         this.platforms.create(1300, 150, 'platforms');
         this.platforms.create(1420 , 280, 'platforms');
         this.platforms.create(1800 , 280, 'platforms');
@@ -73,11 +74,16 @@ class Tableau08 extends Tableau{
         new Return(this,500,height-93);
         new Spoink(this,1200,100);
         new Speed(this,2200,height-93);
+        new PlateformMouv(this,850,300);
 
         this.physics.add.collider(this.platforms, this.stars);
+        this.physics.add.collider(this.platforms, this.stars);
+
 
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         this.physics.add.collider(this.player,this.platforms);
+        this.physics.add.collider(PlateformMouv, this.player);
+        // this.PlateformMouv.setCollisionByProperty({ collides: true });
         // this.sky2=this.add.tileSprite(
         //             0,
         //             30,
@@ -106,7 +112,7 @@ class Tableau08 extends Tableau{
 
 
 
-        this.player.setDepth(10);
+        // this.player.setDepth(10);
         // this.sky.setDepth(20);
     }
 
