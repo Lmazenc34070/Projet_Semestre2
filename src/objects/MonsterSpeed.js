@@ -7,9 +7,9 @@ class Speed extends ObjetEnnemi{
      */
     constructor(scene, x, y) {
         super(scene, x, y, "deoxys");
-        this.setDisplaySize(72,90);
-        this.setBodySize(this.body.width-20,this.body.height-20);
-        this.setOffset(10, 10);
+        this.setDisplaySize(90,60);
+        this.setBodySize(this.body.width,this.body.height-10);
+        this.setOffset(0,0);
         this.setBounce(1);
         this.setCollideWorldBounds(true);
         this.setVelocityX(300);
@@ -25,7 +25,8 @@ class Speed extends ObjetEnnemi{
         this.originalY=y;
         this.minY=y-5;
         this.maxY=y+5;
-
     }
+
+    
 
 }

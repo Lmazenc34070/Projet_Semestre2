@@ -11,6 +11,8 @@ class Tableau08 extends Tableau{
         this.load.image('tarsal', 'assets/MonstreB.png');
         this.load.image('spoink', 'assets/MonstreR.png');
         this.load.image('deoxys', 'assets/monstreV.png');
+        this.load.image('tiles', 'assets/Tiledmap/TileSheet1.png');
+        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest1.json');
     }
     create() {
         super.create();
@@ -79,10 +81,9 @@ class Tableau08 extends Tableau{
         this.physics.add.collider(this.platforms, this.stars);
         this.physics.add.collider(this.platforms, this.stars);
 
-
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         this.physics.add.collider(this.player,this.platforms);
-        this.physics.add.collider(PlateformMouv, this.player);
+        this.physics.add.collider(this.player, PlateformMouv);
         // this.PlateformMouv.setCollisionByProperty({ collides: true });
         // this.sky2=this.add.tileSprite(
         //             0,

@@ -41,6 +41,9 @@ class GamePad extends Phaser.GameObjects.Container{
                 case "ArrowDown":
                     Tableau.current.player.directionY=1;
                     break;
+                // case "SPACE":
+                //     Tableau.current.player.shootBeam();
+                //     break;
             }
         });
         scene.input.keyboard.on('keyup', function(kevent){
@@ -62,6 +65,7 @@ class GamePad extends Phaser.GameObjects.Container{
                     break;
             }
         });
+
 
         circleDrag.on('drag', (pointer, dragX, dragY) => {
             circleDrag.x = dragX

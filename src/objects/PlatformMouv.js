@@ -8,19 +8,17 @@ class PlateformMouv extends ObjetPhysique{
     constructor(scene, x, y) { //constructor est l'équivalent de Create dans une classe
         super(scene, x, y, "PlateformMouv");
 
-
         this.body.allowGravity=false;
-        this.setDisplaySize(130, 35)
-        this.setBodySize(this.body.width,this.body.height);
+        //this.setBodySize(this.body.width,this.body.height);
         //this.body.setSize(64,64);
         this.setOrigin(0,0);
-        //this.setDisplaySize(64,64);
+        this.setDisplaySize(90, 35);
         this.setCollideWorldBounds(true);
         this.setBounce(0);
-        this.setDepth(10);
-        //this.physics.add.collider(this.player,this);
 
-        // X
+        this.setDepth(1000);
+        //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
+        
         this.originalX=x;
         this.minX=x;
         this.maxX=x-200;

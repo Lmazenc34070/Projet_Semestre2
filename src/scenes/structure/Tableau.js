@@ -63,12 +63,20 @@ class Tableau extends Phaser.Scene{
         this.boom.displayHeight=64;
         this.boom.visible=false;
         this.boom.setDepth(9);
+
+        this.boutonTir = this.input.keyboard.addKey('A');
     }
     update(){
         super.update();
         this.player.move();
+        this.tirPlayer();
     }
 
+    tirPlayer(){
+        if (Phaser.Input.Keyboard.JustDown(this.boutonTir)){
+            this.player.shoot();   
+        }
+    }
     ramasserEtoile (player, star)
     {
         star.disableBody(true, true);
@@ -158,7 +166,7 @@ class Tableau extends Phaser.Scene{
                     //à la fin de la petite anim...ben il se passe rien :)
                 })
                 //notre joueur rebondit sur le monstre
-                player.directionY=500;
+                // player.directionY=500;
             }else{
                 //le joueur est mort
                 if(!me.player.isDead){
@@ -183,6 +191,7 @@ class Tableau extends Phaser.Scene{
 
     }
 
+    
 
     /**
 =======

@@ -12,7 +12,6 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.setDisplaySize(55, 80)
         this.setBodySize(this.body.width-6,this.body.height);
         this.setOffset(3, 0);
-        this.setDepth(10);
         this.sens = 1;
 
         this.anims.create({
@@ -103,13 +102,22 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 //this.setVelocityY(-500);
                 this.scene.tweens.add({
                     targets: this,
-                    y: '-=140',
+                    y: '-=115',
                     ease: 'Power2',
                     duration: 400,
                 })
-                this.body.setVelocityY(10);
+                this.body.setVelocityY(10 );
             }
         }
+    }
+
+    shoot()
+    {
+        var bullet = new Tir(this.scene,this.x, this.y);
+        console.log("Tir");
+        setTimeout(function(){
+            bullet.destroy();
+        },1500);
     }
 
     
