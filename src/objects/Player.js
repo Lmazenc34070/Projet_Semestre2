@@ -9,7 +9,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.setGravityY(700)
         this.setFriction(1,1);
         this.scale=1.5;
-        this.setDisplaySize(55, 80)
+        this.setDisplaySize(65, 100)
         this.setBodySize(this.body.width-6,this.body.height);
         this.setOffset(3, 0);
         this.sens = 1;
@@ -80,12 +80,12 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         switch (true){
             case this._directionX<0:
                 this.sens=-1;
-                this.setVelocityX(-160);
+                this.setVelocityX(-600);
                 this.anims.play('left', true);
                 break;
             case this._directionX>0:
                 this.sens=1;
-                this.setVelocityX(160);
+                this.setVelocityX(600);
                 this.anims.play('right', true);
                 break;
             default:
@@ -102,11 +102,11 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 //this.setVelocityY(-500);
                 this.scene.tweens.add({
                     targets: this,
-                    y: '-=115',
+                    y: '-=140',
                     ease: 'Power2',
                     duration: 400,
                 })
-                this.body.setVelocityY(10 );
+                this.body.setVelocityY(10);
             }
         }
     }

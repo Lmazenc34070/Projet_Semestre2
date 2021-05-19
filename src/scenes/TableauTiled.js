@@ -14,7 +14,7 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/Tiledmap/TileSheet1.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest2.json');
+        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest2V3.json');
 
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/RobotVole.png');
@@ -91,12 +91,22 @@ class TableauTiled extends Tableau{
         });
 
         this.monstersContainer=this.add.container();
+        this.laserContainer=this.add.container();
+
         ici.robotMonsterObjects = ici.map.getObjectLayer('robotVole')['objects'];
         // On crée des montres volants pour chaque objet rencontré
         ici.robotMonsterObjects.forEach(monsterObject => {
             let monster=new Speed(this,monsterObject.x,monsterObject.y);
             this.monstersContainer.add(monster);
             this.physics.add.collider(monster, this.devant);
+        });
+
+        ici.laserObjects = ici.map.getObjectLayer('Laser')['objects'];
+        // On crée des montres volants pour chaque objet rencontré
+        ici.laserObjects.forEach(laserObject => {
+            let laser=new RayonLaser(this,laserObject.x,laserObject.y);
+            this.laserContainer.add(laser);
+            this.physics.add.collider(laser, this.player);
         });
 
         //----------débug---------------------
@@ -147,6 +157,7 @@ class TableauTiled extends Tableau{
         debug.setDepth(z--);
         this.boom.setDepth(z--);
         this.monstersContainer.setDepth(z--);
+        this.laserContainer.setDepth(z--);
         this.stars.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.Platforms.setDepth(z--);

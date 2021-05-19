@@ -37,6 +37,10 @@ class Tableau extends Phaser.Scene{
             'assets/MonstreB-sheet.png',
             { frameWidth: 63, frameHeight: 64  }
         );
+        this.load.spritesheet('Laser',
+            'assets/laser_spriteSheet.png',
+            { frameWidth: 25, frameHeight: 167  }
+        );
     }
     create(){
         Tableau.current=this;
@@ -74,7 +78,7 @@ class Tableau extends Phaser.Scene{
 
     tirPlayer(){
         if (Phaser.Input.Keyboard.JustDown(this.boutonTir)){
-            this.player.shoot();   
+            this.player.shoot();
         }
     }
     ramasserEtoile (player, star)
@@ -190,6 +194,7 @@ class Tableau extends Phaser.Scene{
         }
 
     }
+    
 
     
 
