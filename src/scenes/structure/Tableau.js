@@ -41,6 +41,10 @@ class Tableau extends Phaser.Scene{
             'assets/laser_spriteSheet.png',
             { frameWidth: 25, frameHeight: 167  }
         );
+        this.load.spritesheet('Rebond',
+            'assets/rebond_spriteSheet.png',
+            { frameWidth: 155, frameHeight: 61  }
+        );
     }
     create(){
         Tableau.current=this;
@@ -74,6 +78,13 @@ class Tableau extends Phaser.Scene{
         super.update();
         this.player.move();
         this.tirPlayer();
+    }
+
+    Bounding (player, rebond)
+    {
+        // setTimeout(function(){
+            player.setVelocityY(-850);
+        // },600);
     }
 
     tirPlayer(){
@@ -121,6 +132,7 @@ class Tableau extends Phaser.Scene{
         this.scene.restart();
 
     }
+    
     saigne(object,onComplete){
         let me=this;
         me.boom.visible=true;

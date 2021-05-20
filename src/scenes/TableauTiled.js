@@ -14,7 +14,7 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/Tiledmap/TileSheet1.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest2V3.json');
+        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest2V4.json');
 
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/RobotVole.png');
@@ -92,6 +92,7 @@ class TableauTiled extends Tableau{
 
         this.monstersContainer=this.add.container();
         this.laserContainer=this.add.container();
+        this.rebondContainer=this.add.container();
 
         ici.robotMonsterObjects = ici.map.getObjectLayer('robotVole')['objects'];
         // On crée des montres volants pour chaque objet rencontré
@@ -107,6 +108,14 @@ class TableauTiled extends Tableau{
             let laser=new RayonLaser(this,laserObject.x,laserObject.y);
             this.laserContainer.add(laser);
             this.physics.add.collider(laser, this.player);
+        });
+
+        ici.rebondObjects = ici.map.getObjectLayer('PlatRebond')['objects'];
+        // On crée des montres volants pour chaque objet rencontré
+        ici.rebondObjects.forEach(rebondObject => {
+            let rebond=new PlatRebond(this,rebondObject.x,rebondObject.y);
+            this.rebondContainer.add(rebond);
+            ici.physics.add.overlap(this.player, rebond,this.Bounding,null,this);
         });
 
         //----------débug---------------------
@@ -155,9 +164,10 @@ class TableauTiled extends Tableau{
         //on définit les z à la fin
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
-        this.boom.setDepth(z--);
+        // this.boom.setDepth(z--);
         this.monstersContainer.setDepth(z--);
         this.laserContainer.setDepth(z--);
+        this.rebondContainer.setDepth(z--);
         this.stars.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.Platforms.setDepth(z--);
