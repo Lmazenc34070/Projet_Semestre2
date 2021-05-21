@@ -39,10 +39,10 @@ class Tableau extends Phaser.Scene{
         );
         this.load.spritesheet('Laser',
             'assets/laser_spriteSheet.png',
-            { frameWidth: 25, frameHeight: 167  }
+            { frameWidth: 24, frameHeight: 167  }
         );
         this.load.spritesheet('Rebond',
-            'assets/rebond_spriteSheet.png',
+            'assets/rebond_spriteSheet1.png',
             { frameWidth: 155, frameHeight: 61  }
         );
     }
@@ -65,7 +65,7 @@ class Tableau extends Phaser.Scene{
          * Le joueur
          * @type {Player}
          */
-        this.player=new Player(this,0,0);
+        this.player=new Player(this,0,1150);
         this.boom=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"boom")
         this.boom.displayWidth=64;
         this.boom.displayHeight=64;

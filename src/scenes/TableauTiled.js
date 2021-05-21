@@ -12,9 +12,9 @@ class TableauTiled extends Tableau{
         super.preload();
         // ------pour TILED-------------
         // nos images
-        this.load.image('tiles', 'assets/Tiledmap/TileSheet1.png');
+        this.load.image('tiles', 'assets/Tiledmap/TileSheet2.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest2V4.json');
+        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest2V8.json');
 
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/RobotVole.png');
@@ -36,7 +36,7 @@ class TableauTiled extends Tableau{
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
-        this.tileset = this.map.addTilesetImage('TileSheet1', 'tiles');
+        this.tileset = this.map.addTilesetImage('TileSheet2', 'tiles');
 
         //on agrandit le champ de la caméra du coup
         let largeurDuTableau=this.map.widthInPixels;
@@ -197,7 +197,7 @@ class TableauTiled extends Tableau{
     moveParallax(){
         //le ciel se déplace moins vite que la caméra pour donner un effet paralax
         // this.sky.tilePositionX=this.cameras.main.scrollX*0.6;
-        this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
+        // this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
         // this.sky2.tilePositionX=this.cameras.main.scrollX*0.7+100;
         // this.sky2.tilePositionY=this.cameras.main.scrollY*0.7+100;
     }

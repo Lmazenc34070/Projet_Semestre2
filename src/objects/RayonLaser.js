@@ -33,7 +33,7 @@ class RayonLaser extends ObjetEnnemi{
     this.anims.create({
        key: 'moov',
        frames: this.anims.generateFrameNumbers('Laser', { start: 0, end: 4 }),
-       frameRate: 5,
+       frameRate: 20,
        repeat: -1
     });
 

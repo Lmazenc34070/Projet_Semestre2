@@ -5,7 +5,7 @@ class PlatRebond extends ObjetPhysique{
        this.setBodySize(this.body.width,this.body.height-45);
        this.setOffset(0, 45);
        this.setBounce(0);
-       this.setCollideWorldBounds(true);
+      //  this.setCollideWorldBounds(true);
        this.setImmovable(true);
        // this.setVelocityX(50);
        // this.setDepth(10);
@@ -16,14 +16,11 @@ class PlatRebond extends ObjetPhysique{
     this.anims.create({
        key: 'spoing',
        frames: this.anims.generateFrameNumbers('Rebond', { start: 0, end: 2 }),
-       frameRate: 9,
+       frameRate: 5,
        repeat: -1
     });
 
     this.anims.play('spoing', true);
 
-   //  scene.rebondContainer.iterate(rebond=>{
-   //    scene.physics.add.overlap(this, this.player, function(){rebond.Boing()}, null, scene);
-   //  })
     }
  }
