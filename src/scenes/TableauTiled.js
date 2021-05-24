@@ -14,12 +14,13 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/Tiledmap/TileSheet2.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest2V8.json');
+        this.load.tilemapTiledJSON('map', 'assets/Tiledmap/LevelTest2V9.json');
 
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/RobotVole.png');
         this.load.image('PlateformMouv', 'assets/Plat_Sci_Fi1.png');
         this.load.image('tir', 'assets/Tir.png');
+        this.load.image('robotSuiveur', 'assets/rootSuiveur.png');
         this.load.image('deoxys', 'assets/RobotVole.png');
         this.load.image('night', 'assets/Back_Sci_fi2.png');
         //atlas de texture généré avec https://free-tex-packer.com/app/
@@ -102,10 +103,28 @@ class TableauTiled extends Tableau{
             this.physics.add.collider(monster, this.devant);
         });
 
+        ici.robotSuiveurObjects = ici.map.getObjectLayer('robotSuiveur')['objects'];
+        // On crée des montres volants pour chaque objet rencontré
+        ici.robotSuiveurObjects.forEach(monsterObject => {
+            let monster=new robotSuiveur(this,monsterObject.x,monsterObject.y);
+            this.monstersContainer.add(monster);
+            this.physics.add.collider(monster, this.devant);
+            this.physics.add.collider(monster, this.Platforms);
+
+        });
+
         ici.laserObjects = ici.map.getObjectLayer('Laser')['objects'];
         // On crée des montres volants pour chaque objet rencontré
         ici.laserObjects.forEach(laserObject => {
             let laser=new RayonLaser(this,laserObject.x,laserObject.y);
+            this.laserContainer.add(laser);
+            this.physics.add.collider(laser, this.player);
+        });
+
+        ici.laserObjects = ici.map.getObjectLayer('LaserHorizontal')['objects'];
+        // On crée des montres volants pour chaque objet rencontré
+        ici.laserObjects.forEach(laserObject => {
+            let laser=new RayonLaserH(this,laserObject.x,laserObject.y);
             this.laserContainer.add(laser);
             this.physics.add.collider(laser, this.player);
         });

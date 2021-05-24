@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"LevelTest2V8.json"
+         "target":"LevelTest2V9.json"
         }
     },
  "height":20,
@@ -49,6 +49,29 @@
         }, 
         {
          "draworder":"topdown",
+         "id":7,
+         "name":"robotSuiveur",
+         "objects":[
+                {
+                 "gid":51,
+                 "height":64,
+                 "id":19,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":1344,
+                 "y":1152
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":5,
          "name":"PlatRebond",
          "objects":[
@@ -61,8 +84,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":2688,
-                 "y":1276
+                 "x":2719,
+                 "y":1193
                 }, 
                 {
                  "gid":54,
@@ -74,7 +97,7 @@
                  "visible":true,
                  "width":64,
                  "x":3332,
-                 "y":1024
+                 "y":986
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -132,7 +155,7 @@
                  "visible":true,
                  "width":64,
                  "x":3008,
-                 "y":1152
+                 "y":1120
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -155,7 +178,7 @@
                  "visible":true,
                  "width":64,
                  "x":3076,
-                 "y":836
+                 "y":869
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -163,8 +186,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":19,
+ "nextlayerid":8,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.6.0",

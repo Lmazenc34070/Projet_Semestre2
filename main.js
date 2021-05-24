@@ -8,12 +8,12 @@ let config = {
 
 
     physics: {
-        pixelArt: true,
+        // pixelArt: true,
         zoom: 4,
         default: 'arcade',
         arcade: {
             gravity: { y: 100*3 },
-            debug: true,
+            debug: false,
         }
     },
     scene: [

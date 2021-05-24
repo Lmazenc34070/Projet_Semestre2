@@ -45,6 +45,10 @@ class Tableau extends Phaser.Scene{
             'assets/rebond_spriteSheet1.png',
             { frameWidth: 155, frameHeight: 61  }
         );
+        this.load.spritesheet('LaserH',
+            'assets/laserH_spriteSheet.png',
+            { frameWidth: 261, frameHeight: 37  }
+        );
     }
     create(){
         Tableau.current=this;
@@ -78,6 +82,7 @@ class Tableau extends Phaser.Scene{
         super.update();
         this.player.move();
         this.tirPlayer();
+        // this.robotSuiveur.test();
     }
 
     Bounding (player, rebond)
