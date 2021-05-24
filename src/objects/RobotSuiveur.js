@@ -1,5 +1,5 @@
 
-class robotSuiveur extends ObjetEnnemi{
+class RobotSuiveur extends ObjetEnnemi{
     /**
      *
      * @param {Tableau} scene

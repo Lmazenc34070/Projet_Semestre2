@@ -106,7 +106,7 @@ class TableauTiled extends Tableau{
         ici.robotSuiveurObjects = ici.map.getObjectLayer('robotSuiveur')['objects'];
         // On crée des montres volants pour chaque objet rencontré
         ici.robotSuiveurObjects.forEach(monsterObject => {
-            let monster=new robotSuiveur(this,monsterObject.x,monsterObject.y);
+            let monster=new RobotSuiveur(this,monsterObject.x,monsterObject.y);
             this.monstersContainer.add(monster);
             this.physics.add.collider(monster, this.devant);
             this.physics.add.collider(monster, this.Platforms);
