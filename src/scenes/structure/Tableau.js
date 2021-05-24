@@ -29,10 +29,10 @@ class Tableau extends Phaser.Scene{
             'assets/Player_fix.png',
             { frameWidth: 29, frameHeight: 85  }
         );
-        this.load.spritesheet('player_jump',
-            'assets/Player_fix.png',
-            { frameWidth: 56, frameHeight: 85  }
-        );
+        // this.load.spritesheet('player_jump',
+        //     'assets/Player_fix.png',
+        //     { frameWidth: 56, frameHeight: 85  }
+        // );
         this.load.spritesheet('Bleu',
             'assets/MonstreB-sheet.png',
             { frameWidth: 63, frameHeight: 64  }
@@ -199,7 +199,7 @@ class Tableau extends Phaser.Scene{
                     me.saigne(me.player,function(){
                         //à la fin de la petite anim, on relance le jeu
                         me.boom.visible=false;
-                        me.player.anims.play('turn');
+                        // me.player.anims.play('turn');
                         me.player.isDead=false;
                         me.scene.restart();
                     })
