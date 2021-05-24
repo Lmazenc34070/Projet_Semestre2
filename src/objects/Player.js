@@ -37,7 +37,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
         this.anims.create({
             key: 'stance',
-            frames: this.anims.generateFrameNumbers('player_stance', { start: 4, end: 7  }),
+            frames: this.anims.generateFrameNumbers('player_stance', { start: 0, end: 4  }),
             frameRate: 5,
             repeat: -1
         });
@@ -90,8 +90,8 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 break;
             default:
                 this.setVelocityX(0);
-                // this.anims.play('stance', true);
-                //this.anims.play(this.sens===-1 ? 'back' : 'stance' ,true); //équivalent d'un if, pour mémoriser la position du personnage pour qu'il regarde à gauche ou à droite en fonction du dernier déplacement effectué
+                this.anims.play('stance', true);
+                this.anims.play(this.sens===-1 ? 'stance' : 'back' ,true); //équivalent d'un if, pour mémoriser la position du personnage pour qu'il regarde à gauche ou à droite en fonction du dernier déplacement effectué
         }
    
 
