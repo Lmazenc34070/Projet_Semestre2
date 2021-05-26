@@ -15,7 +15,7 @@ class Tableau extends Phaser.Scene{
      * Par défaut on charge un fond et le player
      */
     preload(){
-        this.load.image('sky', 'assets/Back_Sci_fi2.png');
+        this.load.image('sky', 'assets/Back_Sci_fi4.png');
         // this.load.image('spike', 'assets/spike.png');
         this.load.image('boom', 'assets/Boom.png');
         this.load.audio('mobDeath', 'assets/cri.ogg');
@@ -46,8 +46,8 @@ class Tableau extends Phaser.Scene{
             { frameWidth: 155, frameHeight: 61  }
         );
         this.load.spritesheet('LaserH',
-            'assets/laserH_spriteSheet.png',
-            { frameWidth: 261, frameHeight: 37  }
+            'assets/laser_spriteSheet.png',
+            { frameWidth: 24, frameHeight: 167  }
         );
     }
     create(){

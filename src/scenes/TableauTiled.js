@@ -23,7 +23,7 @@ class TableauTiled extends Tableau{
         this.load.image('robotSuiveur', 'assets/rootSuiveur.png');
         this.load.image('deoxys', 'assets/RobotVole.png');
         this.load.image('night', 'assets/Back_Sci_fi.png');
-        this.load.image('background', 'assets/Back_Sci_fi2.png');
+        this.load.image('background', 'assets/Back_Sci_fi4.png');
 
         //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
@@ -128,6 +128,9 @@ class TableauTiled extends Tableau{
         // On crée des montres volants pour chaque objet rencontré
         ici.laserObjects.forEach(laserObject => {
             let laser=new RayonLaserH(this,laserObject.x,laserObject.y);
+            if(laserObject.properties[0].value === 1){
+                laser.setTint(0x0000FF);
+            }
             this.laserContainer.add(laser);
             this.physics.add.collider(laser, this.player);
         });

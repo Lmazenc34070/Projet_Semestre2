@@ -1,8 +1,8 @@
 class RayonLaserH extends ObjetEnnemi{
     constructor(scene, x, y){
-       super(scene, x+43, y-15, "RayonLaserH"); 
-      this.setDisplaySize(27,40);
-      this.setBodySize(this.body.width+200,this.body.height-10);
+       super(scene, x, y, "RayonLaserH"); 
+       this.setDisplaySize(40,38);
+       this.setBodySize(this.body.width-10,this.body.height+130);
        this.setOffset(0, 3);
        this.setBounce(0);
        this.setCollideWorldBounds(true);
