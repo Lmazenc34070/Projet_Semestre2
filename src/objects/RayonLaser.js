@@ -1,34 +1,17 @@
-class RayonLaser extends ObjetEnnemi{
+class RayonLaser extends ObjetPhysique{
     constructor(scene, x, y){
        super(scene, x, y, "RayonLaser"); 
-       this.setDisplaySize(40,37);
+       this.setDisplaySize(40,38);
        this.setBodySize(this.body.width-10,this.body.height+130);
        this.setOffset(0, 3);
        this.setBounce(0);
        this.setCollideWorldBounds(true);
        this.setImmovable(true);
+       this.setTint(0xFF0035);
        // this.setVelocityX(50);
        // this.setDepth(10);
        this.body.allowGravity=false;
-     //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
-
-     // X
-    //  this.originalX=x;
-    //  this.minX=x-200;
-    //  this.maxX=x+200;
-
-    //  // Y
-    //  this.originalY=y;
-    //  this.minY=y-5;
-    //  this.maxY=y+5;
-    //  // on applique les propriétés du début de l'animation
-    //  this.x=this.minX;
-    //  this.y=this.minY;
-    //  this.alpha=1;
-     //on fait apparaitre notre objet avec un petit delay, puis on lance l'animation
-     //ceci a pour effet de décaler les animations pour ce même objet
-        
         
     this.anims.create({
        key: 'moov',
@@ -38,5 +21,17 @@ class RayonLaser extends ObjetEnnemi{
     });
 
     this.anims.play('moov', true);
+    scene.physics.add.overlap(
+      this,
+      scene.player,
+      scene.hitLaser,
+      null,
+      scene
+  );
+   //  scene.laserContainer.iterate(laser=>{
+   //    scene.physics.add.overlap(this, scene.player, function(){laser.mdrTuGrilles()}, null, scene);
+   // })
     }
+    
+    
  }

@@ -9,7 +9,8 @@ class RobotSuiveur extends ObjetEnnemi{
     constructor(scene, x, y) {
         super(scene, x, y, "robotSuiveur");
         this.setDisplaySize(130,90);
-        this.setBodySize(this.body.width,this.body.height);
+        this.setBodySize(this.body.width,this.body.height-20);
+        this.setOffset(0,0);
         this.dir = 1;
         this.isAlive = true;
 

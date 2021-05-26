@@ -22,7 +22,9 @@ class TableauTiled extends Tableau{
         this.load.image('tir', 'assets/Tir.png');
         this.load.image('robotSuiveur', 'assets/rootSuiveur.png');
         this.load.image('deoxys', 'assets/RobotVole.png');
-        this.load.image('night', 'assets/Back_Sci_fi2.png');
+        this.load.image('night', 'assets/Back_Sci_fi.png');
+        this.load.image('background', 'assets/Back_Sci_fi2.png');
+
         //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
     }
@@ -38,6 +40,7 @@ class TableauTiled extends Tableau{
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
         this.tileset = this.map.addTilesetImage('TileSheet2', 'tiles');
+        
 
         //on agrandit le champ de la caméra du coup
         let largeurDuTableau=this.map.widthInPixels;
@@ -151,28 +154,30 @@ class TableauTiled extends Tableau{
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'night'
+            'background'
         );
         this.sky2=this.add.tileSprite(
             0,
-            0,
+            100,
             this.sys.canvas.width,
             this.sys.canvas.height,
             'night'
         );
         this.sky.setOrigin(0,0);
         this.sky2.setOrigin(0,0);
-        this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.sky.setScrollFactor(1);//fait en sorte que le ciel ne suive pas la caméra
         this.sky2.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
-        this.sky2.blendMode=Phaser.BlendModes.ADD;
+        // this.sky2.blendMode=Phaser.BlendModes.ADD;
 
         //----------collisions---------------------
 
         //quoi collide avec quoi?
         this.physics.add.collider(this.player, this.devant);
         this.physics.add.collider(this.stars, this.devant);
+
         //si le joueur touche une étoile dans le groupe...
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+        
         //quand on touche la lave, on meurt
         this.physics.add.collider(this.player, this.lave,this.playerDie,null,this);
         // if(this.physics.add.overlap(this.monsterObject, this.player.bullet, this.tirOnMonster, null, this)){
@@ -215,10 +220,10 @@ class TableauTiled extends Tableau{
      */
     moveParallax(){
         //le ciel se déplace moins vite que la caméra pour donner un effet paralax
-        // this.sky.tilePositionX=this.cameras.main.scrollX*0.6;
-        // this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
-        // this.sky2.tilePositionX=this.cameras.main.scrollX*0.7+100;
-        // this.sky2.tilePositionY=this.cameras.main.scrollY*0.7+100;
+        this.sky.tilePositionX=this.cameras.main.scrollX*0.1;
+        // this.sky.tilePositionY=this.cameras.main.scrollY*0.1;
+        this.sky2.tilePositionX = this.cameras.main.scrollX * 0.15;
+        this.sky2.tilePositionY = this.cameras.main.scrollY * 0.1;
     }
 
 

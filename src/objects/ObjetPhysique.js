@@ -12,8 +12,10 @@ class ObjetPhysique extends Phaser.Physics.Arcade.Sprite{
          *
          * @type {Tableau}
          */
+
         this.scene=scene;
         scene.add.existing(this);
         scene.physics.add.existing(this);
+        
     }
 }

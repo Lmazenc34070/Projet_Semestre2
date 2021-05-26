@@ -10,7 +10,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.setFriction(1,1);
         this.scale=1.5;
         this.setDisplaySize(65, 100)
-        this.setBodySize(this.body.width-6,this.body.height);
+        this.setBodySize(this.body.width-20,this.body.height);
         this.setOffset(3, 0);
         this.sens = 1;
 
@@ -37,15 +37,15 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
         this.anims.create({
             key: 'stance',
-            frames: this.anims.generateFrameNumbers('player_stance', { start: 0, end: 4  }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('player_stance', { start: 0, end: 3  }),
+            frameRate: 3,
             repeat: -1
         });
 
         this.anims.create({
             key: 'back',
             frames: this.anims.generateFrameNumbers('player_stance', { start: 4, end: 7  }),
-            frameRate: 5,
+            frameRate: 3,
             repeat: -1
         });
 
@@ -115,10 +115,13 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     {
         var bullet = new Tir(this.scene,this.x, this.y);
         console.log("Tir");
+
         setTimeout(function(){
             bullet.destroy();
         },1500);
     }
+
+    
 
     
 

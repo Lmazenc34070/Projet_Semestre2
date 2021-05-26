@@ -16,11 +16,11 @@ class Tableau extends Phaser.Scene{
      */
     preload(){
         this.load.image('sky', 'assets/Back_Sci_fi2.png');
-        this.load.image('spike', 'assets/spike.png');
+        // this.load.image('spike', 'assets/spike.png');
         this.load.image('boom', 'assets/Boom.png');
         this.load.audio('mobDeath', 'assets/cri.ogg');
-        this.load.audio('getItem', 'assets/poire.ogg');
-        this.load.audio('back', 'assets/SongGame.ogg');
+        // this.load.audio('getItem', 'assets/poire.ogg');
+        // this.load.audio('back', 'assets/SongGame.ogg');
         this.load.spritesheet('player',
             'assets/Silh.png',
             { frameWidth: 56, frameHeight: 85  }
@@ -33,10 +33,10 @@ class Tableau extends Phaser.Scene{
         //     'assets/Player_fix.png',
         //     { frameWidth: 56, frameHeight: 85  }
         // );
-        this.load.spritesheet('Bleu',
-            'assets/MonstreB-sheet.png',
-            { frameWidth: 63, frameHeight: 64  }
-        );
+        // this.load.spritesheet('Bleu',
+        //     'assets/MonstreB-sheet.png',
+        //     { frameWidth: 63, frameHeight: 64  }
+        // );
         this.load.spritesheet('Laser',
             'assets/laser_spriteSheet.png',
             { frameWidth: 24, frameHeight: 167  }
@@ -54,9 +54,9 @@ class Tableau extends Phaser.Scene{
         Tableau.current=this;
         this.sys.scene.scale.lockOrientation("landscape")
         this.sound.add('mobDeath');
-        this.sound.add('getItem');
-        this.mood = this.sound.add('back')
-        this.mood.play();
+        // this.sound.add('getItem');
+        // this.mood = this.sound.add('back')
+        // this.mood.play();
         console.log("On est sur "+this.constructor.name+" / "+this.scene.key);
         /**
          * Le ciel en fond
@@ -82,7 +82,6 @@ class Tableau extends Phaser.Scene{
         super.update();
         this.player.move();
         this.tirPlayer();
-        // this.robotSuiveur.test();
     }
 
     Bounding (player, rebond)
@@ -191,7 +190,7 @@ class Tableau extends Phaser.Scene{
             }else{
                 //le joueur est mort
                 if(!me.player.isDead){
-                    this.mood.stop();
+                    // this.mood.stop();
                     me.player.isDead=true;
                     me.player.visible=false;
 
@@ -208,6 +207,26 @@ class Tableau extends Phaser.Scene{
 
 
             }
+        }
+
+    }
+    hitLaser(player, laser){
+        let me=this;
+        
+        //le joueur est mort
+        if(!me.player.isDead){
+                // this.mood.stop();
+                me.player.isDead=true;
+                me.player.visible=false;
+                //ça saigne...
+                me.saigne(me.player,function(){
+                //à la fin de la petite anim, on relance le jeu
+                me.boom.visible=false;
+                // me.player.anims.play('turn');
+                me.player.isDead=false;
+                me.scene.restart();
+            })
+            
         }
 
     }

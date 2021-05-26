@@ -7,6 +7,7 @@ class RayonLaserH extends ObjetEnnemi{
        this.setBounce(0);
        this.setCollideWorldBounds(true);
        this.setImmovable(true);
+       this.setTint(0xFFD700);
        // this.setVelocityX(50);
        // this.setDepth(10);
        this.body.allowGravity=false;
