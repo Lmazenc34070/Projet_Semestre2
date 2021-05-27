@@ -139,6 +139,7 @@ class TableauTiled extends Tableau{
         // On crée des montres volants pour chaque objet rencontré
         ici.rebondObjects.forEach(rebondObject => {
             let rebond=new PlatRebond(this,rebondObject.x,rebondObject.y);
+            // rebond.setTint(0xFFFFFF);
             this.rebondContainer.add(rebond);
             ici.physics.add.overlap(this.player, rebond,this.Bounding,null,this);
         });
@@ -184,7 +185,7 @@ class TableauTiled extends Tableau{
         //quand on touche la lave, on meurt
         this.physics.add.collider(this.player, this.lave,this.playerDie,null,this);
         // if(this.physics.add.overlap(this.monsterObject, this.player.bullet, this.tirOnMonster, null, this)){
-        //     console.log("coucou batard")
+        //     console.log("coucou sjpsjn")
         // }
         //--------- Z order -----------------------
 
