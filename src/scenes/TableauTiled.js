@@ -21,8 +21,14 @@ class TableauTiled extends Tableau{
         this.load.image('PlateformMouv', 'assets/Plat_Sci_Fi1.png');
         this.load.image('tir', 'assets/Tir.png');
         this.load.image('robotSuiveur', 'assets/rootSuiveur.png');
+        this.load.image('robotTir', 'assets/Boom.png');
+        this.load.image('projo', 'assets/RobotVole.png');
+
+
         this.load.image('deoxys', 'assets/RobotVole.png');
         this.load.image('night', 'assets/Back_Sci_fi.png');
+        this.load.image('star', 'assets/Boom.png');
+
         this.load.image('background', 'assets/Back_Sci_fi4.png');
 
         //atlas de texture généré avec https://free-tex-packer.com/app/
@@ -52,6 +58,8 @@ class TableauTiled extends Tableau{
         //---- ajoute les plateformes simples ----------------------------
 
         this.devant = this.map.createLayer('Devant', this.tileset, 0, 0);
+        this.decor = this.map.createLayer('decor', this.tileset, 0, 0);
+
 
         //on définit les collisions, plusieurs méthodes existent:
 
@@ -63,11 +71,11 @@ class TableauTiled extends Tableau{
         //----------les étoiles (objets) ---------------------
 
         // c'est un peu plus compliqué, mais ça permet de maîtriser plus de choses...
-        this.stars = this.physics.add.group({
-            allowGravity: true,
-            immovable: false,
-            bounceY:1
-        });
+        // this.stars = this.physics.add.group({
+        //     allowGravity: true,
+        //     immovable: false,
+        //     bounceY:1
+        // });
         //this.starsObjects = this.map.getObjectLayer('stars')['objects'];
         // On crée des étoiles pour chaque objet rencontré
         // this.starsObjects.forEach(starObject => {
@@ -97,6 +105,7 @@ class TableauTiled extends Tableau{
         this.monstersContainer=this.add.container();
         this.laserContainer=this.add.container();
         this.rebondContainer=this.add.container();
+        this.starContainer=this.add.container();
 
         ici.robotMonsterObjects = ici.map.getObjectLayer('robotVole')['objects'];
         // On crée des montres volants pour chaque objet rencontré
@@ -104,6 +113,22 @@ class TableauTiled extends Tableau{
             let monster=new Speed(this,monsterObject.x,monsterObject.y);
             this.monstersContainer.add(monster);
             this.physics.add.collider(monster, this.devant);
+        });
+
+        ici.robotMonsterObjects = ici.map.getObjectLayer('robotTir')['objects'];
+        // On crée des montres volants pour chaque objet rencontré
+        ici.robotMonsterObjects.forEach(monsterObject => {
+            let monster=new RobotTir(this,monsterObject.x,monsterObject.y);
+            this.monstersContainer.add(monster);
+            this.physics.add.collider(monster, this.devant);
+        });
+
+        ici.starObjects = ici.map.getObjectLayer('star')['objects'];
+        ici.starObjects.forEach(starObject => {
+            let star=new Star(this,starObject.x,starObject.y);
+            this.starContainer.add(star);
+            this.physics.add.collider(star, this.devant);
+            this.physics.add.overlap(star, this.player, this.ramasserEtoile, null, this);
         });
 
         ici.robotSuiveurObjects = ici.map.getObjectLayer('robotSuiveur')['objects'];
@@ -177,10 +202,10 @@ class TableauTiled extends Tableau{
 
         //quoi collide avec quoi?
         this.physics.add.collider(this.player, this.devant);
-        this.physics.add.collider(this.stars, this.devant);
+        // this.physics.add.collider(this.stars, this.devant);
 
         //si le joueur touche une étoile dans le groupe...
-        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+        // this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         
         //quand on touche la lave, on meurt
         this.physics.add.collider(this.player, this.lave,this.playerDie,null,this);
@@ -196,13 +221,14 @@ class TableauTiled extends Tableau{
         this.monstersContainer.setDepth(z--);
         this.laserContainer.setDepth(z--);
         this.rebondContainer.setDepth(z--);
-        this.stars.setDepth(z--);
+        this.starContainer.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.Platforms.setDepth(z--);
         this.devant.setDepth(z--);
         //this.solides.setDepth(z--);
         //this.laveFxContainer.setDepth(z--);
         //this.lave.setDepth(z--);
+        this.decor.setDepth(z--);
         this.player.setDepth(z--);
         //this.derriere.setDepth(z--);
         this.sky2.setDepth(z--);
@@ -227,7 +253,7 @@ class TableauTiled extends Tableau{
         this.sky.tilePositionX=this.cameras.main.scrollX*0.1;
         // this.sky.tilePositionY=this.cameras.main.scrollY*0.1;
         this.sky2.tilePositionX = this.cameras.main.scrollX * 0.15;
-        this.sky2.tilePositionY = this.cameras.main.scrollY * 0.1;
+        this.sky2.tilePositionY = this.cameras.main.scrollY * 0.05;
     }
 
 

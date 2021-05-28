@@ -22,12 +22,12 @@ class Tableau extends Phaser.Scene{
         // this.load.audio('getItem', 'assets/poire.ogg');
         // this.load.audio('back', 'assets/SongGame.ogg');
         this.load.spritesheet('player',
-            'assets/Silh.png',
-            { frameWidth: 56, frameHeight: 85  }
+            'assets/RunPerso.png',
+            { frameWidth: 191, frameHeight: 219  }
         );
         this.load.spritesheet('player_stance',
             'assets/Player_fix.png',
-            { frameWidth: 29, frameHeight: 85  }
+            { frameWidth: 12, frameHeight: 85  }
         );
         // this.load.spritesheet('player_jump',
         //     'assets/Player_fix.png',
@@ -210,6 +210,9 @@ class Tableau extends Phaser.Scene{
         }
 
     }
+
+
+
     hitLaser(player, laser){
         let me=this;
         
@@ -254,7 +257,7 @@ class Tableau extends Phaser.Scene{
      */
     win(){
         Tableau.suivant();
-        this.mood.stop();
+        // this.mood.stop();
     }
 
     /**

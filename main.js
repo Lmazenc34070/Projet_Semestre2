@@ -19,7 +19,7 @@ let config = {
     scene: [
         new Ui(),
         new TableauTiled("Tiled, A pour tirer"),
-        new Tableau08("1er niveau"),
+        // new Tableau08("1er niveau"),
         
     ],
     width: width,

@@ -28,9 +28,6 @@ class RayonLaser extends ObjetPhysique{
       null,
       scene
   );
-   //  scene.laserContainer.iterate(laser=>{
-   //    scene.physics.add.overlap(this, scene.player, function(){laser.mdrTuGrilles()}, null, scene);
-   // })
     }
     
     

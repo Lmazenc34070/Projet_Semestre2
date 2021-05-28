@@ -9,49 +9,42 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.setGravityY(700)
         this.setFriction(1,1);
         this.scale=1.5;
-        this.setDisplaySize(65, 100)
+        this.setDisplaySize(75, 125)
         this.setBodySize(this.body.width-20,this.body.height);
         this.setOffset(3, 0);
         this.sens = 1;
+        this.rechargeSonTir = false; //bool pour le rechargement
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 3 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 10 }),
+            frameRate: 12,
             repeat: -1
         });
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('player', { start: 5, end: 8 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('player', { start: 11, end: 21 }),
+            frameRate: 12,
             repeat: -1
         });
-       
-        // this.anims.create({
-        //     key: 'jump',
-        //     frames: this.anims.generateFrameNumbers('player_jump', { start: 5, end: 8  }),
-        //     frameRate: 5,
-        //     repeat: -1
-        // });
 
         this.anims.create({
             key: 'stance',
-            frames: this.anims.generateFrameNumbers('player_stance', { start: 0, end: 3  }),
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 0  }),
             frameRate: 3,
             repeat: -1
         });
 
         this.anims.create({
             key: 'back',
-            frames: this.anims.generateFrameNumbers('player_stance', { start: 4, end: 7  }),
+            frames: this.anims.generateFrameNumbers('player', { start: 21, end: 21  }),
             frameRate: 3,
             repeat: -1
         });
 
         this._directionX=0;
         this._directionY=0;
-
 
     }
 
@@ -91,15 +84,13 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             default:
                 this.setVelocityX(0);
                 this.anims.play('stance', true);
-                this.anims.play(this.sens===-1 ? 'stance' : 'back' ,true); //équivalent d'un if, pour mémoriser la position du personnage pour qu'il regarde à gauche ou à droite en fonction du dernier déplacement effectué
+                this.anims.play(this.sens===-1 ? 'stance' : 'back' ,true);
         }
    
 
-        if(this._directionY<0){ //gère la hauteur du saut du perso
-            //this.jump();//fonction gérant l'anim de saut
+        if(this._directionY<0){
 
-            if(this.body.blocked.down || this.body.touching.down){
-                //this.setVelocityY(-500);
+            if(this.body.blocked.down){
                 this.scene.tweens.add({
                     targets: this,
                     y: '-=140',
@@ -113,13 +104,23 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
     shoot()
     {
-        var bullet = new Tir(this.scene,this.x, this.y);
-        console.log("Tir");
+        
 
-        setTimeout(function(){
-            bullet.destroy();
-        },1500);
+        if(this.rechargeSonTir === false) { //on vérifie si on a recharger le coup
+            
+            this.rechargeSonTir = true; //lance la recharge
+            var bullet = new Tir(this.scene,this.x, this.y);
+            console.log("Tir");
+            setTimeout(function(){
+                bullet.destroy();
+            },1500);
+            setTimeout(function () {
+                Tableau.current.player.rechargeSonTir = false;
+            }, 900);
+        }
     }
+
+    
 
     
 
