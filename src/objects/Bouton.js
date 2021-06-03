@@ -25,7 +25,6 @@ class Bouton extends ObjetPhysique{
       }
       else if(this.body.touching.up && this.oui){
          this.oui = true;
-         
       }
       else{
          this.oui = false;

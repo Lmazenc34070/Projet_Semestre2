@@ -60,6 +60,10 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
         this._directionX=0;
         this._directionY=0;
+        this.light = scene.lights.addLight(x, y, 150, (0, 0, 0), 0.3);
+        this.light.color.r = 2;
+        this.light.color.g = 2;
+        this.light.color.b = 2;
 
     }
 

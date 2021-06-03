@@ -69,7 +69,7 @@ class Tableau extends Phaser.Scene{
          * Le joueur
          * @type {Player}
          */
-        this.player=new Player(this,4383,484);
+        this.player=new Player(this,100,2030);
         this.boom=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"boom")
         this.boom.displayWidth=64;
         this.boom.displayHeight=64;
@@ -85,8 +85,10 @@ class Tableau extends Phaser.Scene{
     }
 
     Bounding (player, rebond)
-    {
-            player.setVelocityY(-850);
+    {   
+        if(rebond.body.touching.up){
+            player.setVelocityY(-850)
+        };
     }
 
     tirPlayer(){

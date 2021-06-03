@@ -28,5 +28,10 @@ class Tir extends ObjetPhysique{
             }
          }, null, scene);
       })
+      scene.rebondContainer.iterate(rebond=>{
+         scene.physics.add.overlap(this, rebond, function(){
+            tir.destroy()
+         }, null, scene);
+      })
    }
 }

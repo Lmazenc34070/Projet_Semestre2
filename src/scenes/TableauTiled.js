@@ -94,6 +94,7 @@ class TableauTiled extends Tableau{
         this.rebondContainer=this.add.container();
         this.starContainer=this.add.container();
         this.boutonContainer=this.add.container();
+        this.plightContainer=this.add.container();
 
         ici.robotMonsterObjects = ici.map.getObjectLayer('robotVole')['objects'];
         // On crée des montres volants pour chaque objet rencontré
@@ -185,6 +186,13 @@ class TableauTiled extends Tableau{
             // if(this.player.body.velocity.y > 0||this.player.getBounds().bottom < rebond.getBounds().top+30){
                 ici.physics.add.collider(this.player, rebond,this.Bounding,null,this);
             // }    
+        });
+
+        ici.plight = ici.map.getObjectLayer('Lights')['objects'];
+        ici.plight.forEach(plightObjects => {
+          let light = new Light(this,plightObjects.x+16,plightObjects.y-10).setDepth(9999);
+          light.addLight(this,63,101,225, 200, 0.5, 0.03,false);
+          this.plightContainer.add(light);
         });
 
         //----------débug---------------------
