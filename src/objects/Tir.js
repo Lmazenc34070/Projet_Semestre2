@@ -23,7 +23,9 @@ class Tir extends ObjetPhysique{
       })
       scene.laserContainer.iterate(laser=>{
          scene.physics.add.overlap(this, laser, function(){
-             tir.destroy()
+            if(laser.isEnable){
+               tir.destroy()
+            }
          }, null, scene);
       })
    }

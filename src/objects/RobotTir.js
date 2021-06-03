@@ -23,6 +23,7 @@ class RobotTir extends ObjetEnnemi{
         this.setDepth(102);
         scene.time.addEvent({ delay: 1000, callback: this.tirMechant, callbackScope: this, loop: true });
 
+        
     }
 
     

@@ -15,7 +15,7 @@ class Tableau extends Phaser.Scene{
      * Par défaut on charge un fond et le player
      */
     preload(){
-        this.load.image('sky', 'assets/Back_Sci_fi4.png');
+        this.load.image('pipou', 'assets/Back_Sci_fi4.png');
         // this.load.image('spike', 'assets/spike.png');
         this.load.image('boom', 'assets/Boom.png');
         this.load.audio('mobDeath', 'assets/cri.ogg');
@@ -25,18 +25,6 @@ class Tableau extends Phaser.Scene{
             'assets/RunPerso.png',
             { frameWidth: 191, frameHeight: 219  }
         );
-        this.load.spritesheet('player_stance',
-            'assets/Player_fix.png',
-            { frameWidth: 12, frameHeight: 85  }
-        );
-        // this.load.spritesheet('player_jump',
-        //     'assets/Player_fix.png',
-        //     { frameWidth: 56, frameHeight: 85  }
-        // );
-        // this.load.spritesheet('Bleu',
-        //     'assets/MonstreB-sheet.png',
-        //     { frameWidth: 63, frameHeight: 64  }
-        // );
         this.load.spritesheet('Laser',
             'assets/laser_spriteSheet.png',
             { frameWidth: 24, frameHeight: 167  }
@@ -48,6 +36,18 @@ class Tableau extends Phaser.Scene{
         this.load.spritesheet('LaserH',
             'assets/laser_spriteSheet.png',
             { frameWidth: 24, frameHeight: 167  }
+        );
+        this.load.spritesheet('suiveur',
+            'assets/suiveur_SpriteSheet.png',
+            { frameWidth: 333, frameHeight: 238  }
+        );
+        this.load.spritesheet('jumpPerso',
+            'assets/jump-SpriteSheet.png',
+            { frameWidth: 150, frameHeight: 219  }
+        );
+        this.load.spritesheet('radar',
+            'assets/Sprite-Vol.png',
+            { frameWidth: 120, frameHeight: 58  }
         );
     }
     create(){
@@ -62,14 +62,14 @@ class Tableau extends Phaser.Scene{
          * Le ciel en fond
          * @type {Phaser.GameObjects.Image}
          */
-        this.sky=this.add.image(0, 0, 'sky').setOrigin(0,0);
-        this.sky.displayWidth=14*64;
-        this.sky.setScrollFactor(0,0);
+        this.pipou=this.add.image(0, 0, 'pipou').setOrigin(0,0);
+        this.pipou.displayWidth=14*64;
+        this.pipou.setScrollFactor(0,0);
         /**
          * Le joueur
          * @type {Player}
          */
-        this.player=new Player(this,0,1150);
+        this.player=new Player(this,4383,484);
         this.boom=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"boom")
         this.boom.displayWidth=64;
         this.boom.displayHeight=64;
@@ -86,9 +86,7 @@ class Tableau extends Phaser.Scene{
 
     Bounding (player, rebond)
     {
-        // setTimeout(function(){
             player.setVelocityY(-850);
-        // },600);
     }
 
     tirPlayer(){
@@ -213,26 +211,7 @@ class Tableau extends Phaser.Scene{
 
 
 
-    hitLaser(player, laser){
-        let me=this;
-        
-        //le joueur est mort
-        if(!me.player.isDead){
-                // this.mood.stop();
-                me.player.isDead=true;
-                me.player.visible=false;
-                //ça saigne...
-                me.saigne(me.player,function(){
-                //à la fin de la petite anim, on relance le jeu
-                me.boom.visible=false;
-                // me.player.anims.play('turn');
-                me.player.isDead=false;
-                me.scene.restart();
-            })
-            
-        }
-
-    }
+    
     
 
     
