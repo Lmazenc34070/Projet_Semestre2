@@ -40,22 +40,24 @@ class Speed extends ObjetEnnemi{
             frameRate: 20,
             repeat: -1
         });
+        this.anims.play('radarLeft', true);
+        this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
         
     }
     
-    Moov(){
+    // Moov(){
 
-        this.direction();
+    //     this.direction();
 
-        if(this.vol.dir===1)
-        {
-            console.log("Caca");
-            this.anims.play('radarLeft', true);
-        }else if(this.vol.dir===_1){
-            this.anims.play('radarRight', true);
+    //     if(this.vol.dir===1)
+    //     {
+    //         console.log("Caca");
+    //         this.anims.play('radarLeft', true);
+    //     }else if(this.vol.dir===_1){
+    //         this.anims.play('radarRight', true);
 
-        }
-    }
+    //     }
+    // }
     
     // Moov(){
     //     this.direction();
@@ -78,6 +80,17 @@ class Speed extends ObjetEnnemi{
         }
     }
 
+    update(){
+        //fait changer de sens
+        if(this.body){
+            if(this.body.velocity.x<0){
+                this.flipX=false;
+            }else{
+                this.flipX=true;
+            }
+        }
+    
+    }
     
 
 }

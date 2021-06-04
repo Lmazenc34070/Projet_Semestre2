@@ -19,6 +19,8 @@ class TableauTiled extends Tableau{
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/RobotVole.png');
         this.load.image('PlateformMouv', 'assets/Plat_Sci_Fi1.png');
+        this.load.image('Move', 'assets/Plat_Sci_Fi1.png');
+
         this.load.image('tir', 'assets/Tir.png');
         this.load.image('robotSuiveur', 'assets/rootSuiveur.png');
         this.load.image('robotTir', 'assets/Boom.png');
@@ -95,6 +97,7 @@ class TableauTiled extends Tableau{
         this.starContainer=this.add.container();
         this.boutonContainer=this.add.container();
         this.plightContainer=this.add.container();
+        this.movContainer=this.add.container();
 
         ici.robotMonsterObjects = ici.map.getObjectLayer('robotVole')['objects'];
         // On crée des montres volants pour chaque objet rencontré
@@ -151,23 +154,33 @@ class TableauTiled extends Tableau{
                 laser.setEnable();
             }
             if(laserObject.properties[0].value === 4){
-                laser.setTint(0xFFDD33);
+                // laser.setTint(0xFFDD33);
                 laser.setAngle(90);
                 laser.setDisplaySize(30, 130);
                 laser.setBodySize(laser.body.width+75,laser.body.height-140);
-                laser.setEnable();
+                // laser.setEnable();
             }
             if(laserObject.properties[0].value === 5){
-                laser.setTint(0xFFDD33);
+                // laser.setTint(0xFFDD33);
                 laser.setAngle(90);
                 laser.setDisplaySize(30, 215);
                 laser.setBodySize(laser.body.width+75,laser.body.height-140);
-                laser.setEnable();
+                // laser.setEnable();
             }
             if(laserObject.properties[0].value === 6){
                 laser.setDisplaySize(30, 215);
                 laser.setAngle(90);
                 laser.setBodySize(laser.body.width+130,laser.body.height-140);
+            }
+            if(laserObject.properties[0].value === 7){
+                // laser.setTint(0xFFDD33);
+                laser.setAngle(90);
+                laser.setBodySize(laser.body.width+130,laser.body.height-140);
+                // laser.setEnable();
+            }
+            if(laserObject.properties[0].value === 8){
+                laser.setTint(0xFFDD33);
+                // laser.setEnable();
             }
             this.laserContainer.add(laser);
         });
@@ -177,6 +190,13 @@ class TableauTiled extends Tableau{
             let bouton=new Bouton(this,boutonObject.x,boutonObject.y);
             this.boutonContainer.add(bouton);
             this.physics.add.collider(bouton, this.player);
+        });
+        
+        ici.movObjects = ici.map.getObjectLayer('Mov')['objects'];
+        ici.movObjects.forEach(movObject => {
+            let mov=new Move(this,movObject.x,movObject.y);
+            this.movContainer.add(mov);
+            this.physics.add.collider(mov, this.player);
         });
 
         ici.rebondObjects = ici.map.getObjectLayer('PlatRebond')['objects'];
@@ -194,6 +214,42 @@ class TableauTiled extends Tableau{
           light.addLight(this,63,101,225, 200, 0.5, 0.03,false);
           this.plightContainer.add(light);
         });
+        
+        ici.plight = ici.map.getObjectLayer('Led')['objects'];
+        ici.plight.forEach(plightObjects => {
+          let light = new Light(this,plightObjects.x+16,plightObjects.y-10).setDepth(9999);
+          light.addLight(this,246,249,9, 200, 0.5, 0.03,false);
+          this.plightContainer.add(light);
+        });
+
+        ici.plight = ici.map.getObjectLayer('LedBreak')['objects'];
+        ici.plight.forEach(plightObjects => {
+          let light = new Light(this,plightObjects.x+16,plightObjects.y-10).setDepth(9999);
+          light.addLight(this,246,249,9, 200, 0.5, 0.03,true);
+          this.plightContainer.add(light);
+        });
+        ici.plight = ici.map.getObjectLayer('LightPlat')['objects'];
+        ici.plight.forEach(plightObjects => {
+          let light = new Light(this,plightObjects.x+16,plightObjects.y-10).setDepth(9999);
+          light.addLight(this,246,249,9, 200, 0.7, 0.02,false);
+          this.plightContainer.add(light);
+        });
+        this.particles4 = this.add.particles('fog');
+        this.emitter = this.particles4.createEmitter(
+        {
+            x: -200, y: 812, // à changer en fonction d'où tu les places
+            speed: 10,
+            moveToX: {min:100,max:10000}, // limitesX à changer en fonction d'où tu les places
+            moveToY: {min:846,max:846}, //limitesY  à changer en fonction d'où tu les places
+            rotate: {min:-360,max:360},
+            lifespan: 200000, // pas nécessaire autant ^^
+            quantity: 4,
+            frequency: 1000,
+            delay: 1000,
+            scale: { start: 0.6, end: 0.1 },
+            blendMode: 'NORMAL', 
+        });
+
 
         //----------débug---------------------
             let debug=this.add.graphics().setAlpha(this.game.config.physics.arcade.debug?0.75:0);
@@ -233,6 +289,8 @@ class TableauTiled extends Tableau{
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
         this.monstersContainer.setDepth(z--);
+        this.movContainer.setDepth(z--);
+
         this.boutonContainer.setDepth(z--);
         this.laserContainer.setDepth(z--);
         this.rebondContainer.setDepth(z--);

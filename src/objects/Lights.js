@@ -29,7 +29,7 @@ class Light extends Phaser.Physics.Arcade.Sprite{
       if(isClignote){
         scene.tweens.add({
           targets:l,
-          duration:60,
+          duration:10,
           repeat:-1,
           repeatDelay: Math.random()*5000,
           yoyo: true,

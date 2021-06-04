@@ -22,5 +22,5 @@ class PlatRebond extends ObjetPhysique{
 
     this.anims.play('spoing', true);
 
-    }
+   }
  }
