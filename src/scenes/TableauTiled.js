@@ -30,8 +30,10 @@ class TableauTiled extends Tableau{
 
         this.load.image('night', 'assets/Back_Sci_fi.png');
         this.load.image('star', 'assets/Boom.png');
-
+        this.load.image('fog', 'assets/Brume1.png')
         this.load.image('background', 'assets/Back_Sci_fi4.png');
+        this.load.image('pixel', 'assets/pixel.png');
+
     }
     create() {
         super.create();
@@ -98,6 +100,8 @@ class TableauTiled extends Tableau{
         this.boutonContainer=this.add.container();
         this.plightContainer=this.add.container();
         this.movContainer=this.add.container();
+        this.starsFxContainer=this.add.container();
+
 
         ici.robotMonsterObjects = ici.map.getObjectLayer('robotVole')['objects'];
         // On crée des montres volants pour chaque objet rencontré
@@ -234,11 +238,37 @@ class TableauTiled extends Tableau{
           light.addLight(this,246,249,9, 200, 0.7, 0.02,false);
           this.plightContainer.add(light);
         });
+
+        this.ckpContainer = this.add.container();
+
+        this.checkPointsObjects = this.map.getObjectLayer('ckps')['objects'];
+        this.checkPointsObjects.forEach(checkPointsObject => {
+            let ckp = new checkPoint(
+                this,
+                checkPointsObject.x,
+                checkPointsObject.y - 32,
+                'checkpoint',
+                checkPointsObject.properties[0].value
+            );
+            this.physics.add.overlap(this.player, ckp, function()
+            {
+                ckp.savePos();
+                ckp.glow();
+            });
+
+            this.playerPos = ckp.loadPos();
+
+            if(this.playerPos)
+            {
+                ici.player.setPosition(this.playerPos.x, this.playerPos.y - 64);
+            }
+        })
+
         this.particles4 = this.add.particles('fog');
         this.emitter = this.particles4.createEmitter(
         {
-            x: -200, y: 812, // à changer en fonction d'où tu les places
-            speed: 10,
+            x: 0, y: 2000, // à changer en fonction d'où tu les places
+            speed: 1000,
             moveToX: {min:100,max:10000}, // limitesX à changer en fonction d'où tu les places
             moveToY: {min:846,max:846}, //limitesY  à changer en fonction d'où tu les places
             rotate: {min:-360,max:360},
@@ -246,6 +276,7 @@ class TableauTiled extends Tableau{
             quantity: 4,
             frequency: 1000,
             delay: 1000,
+            alpha : 0.5,
             scale: { start: 0.6, end: 0.1 },
             blendMode: 'NORMAL', 
         });

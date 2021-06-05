@@ -1,4 +1,3 @@
-
 let width=14*64; //896;
 let height=7*64; //448;
 
@@ -18,6 +17,7 @@ let config = {
     },
     scene: [
         new Ui(),
+        new Menu(),
         new TableauTiled("Tiled, A pour tirer"),
         // new Tableau08("1er niveau"),
         
@@ -64,7 +64,6 @@ function resize() {
         canvas.style.width = width + "px";
         canvas.style.height = height + "px";
     }
-
      */
 
 }

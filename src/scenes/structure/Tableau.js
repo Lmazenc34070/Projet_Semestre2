@@ -1,7 +1,3 @@
-/**
- * Toutes les fonctions propres à un tableau dans notre jeu.
- * Cette classe n'est pas à utiliser directement, elle doit être extend !
- */
 class Tableau extends Phaser.Scene{
     /**
      *
@@ -18,7 +14,9 @@ class Tableau extends Phaser.Scene{
         this.load.image('pipou', 'assets/Back_Sci_fi4.png');
         // this.load.image('spike', 'assets/spike.png');
         this.load.image('boom', 'assets/Boom.png');
-        this.load.audio('mobDeath', 'assets/cri.ogg');
+        this.load.image('checkpoint', 'assets/Brume1.png');
+
+        // this.load.audio('mobDeath', 'assets/cri.ogg');
         // this.load.audio('getItem', 'assets/poire.ogg');
         // this.load.audio('back', 'assets/SongGame.ogg');
         this.load.spritesheet('player',
@@ -53,7 +51,7 @@ class Tableau extends Phaser.Scene{
     create(){
         Tableau.current=this;
         this.sys.scene.scale.lockOrientation("landscape")
-        this.sound.add('mobDeath');
+        // this.sound.add('mobDeath');
         // this.sound.add('getItem');
         // this.mood = this.sound.add('back')
         // this.mood.play();
@@ -181,7 +179,7 @@ class Tableau extends Phaser.Scene{
                 ui.gagne();
                 monster.isDead=true; //ok le monstre est mort
                 monster.visible=false;
-                this.sound.play('mobDeath');
+                // this.sound.play('mobDeath');
                 this.saigne(monster,function(){
                     //à la fin de la petite anim...ben il se passe rien :)
                 })

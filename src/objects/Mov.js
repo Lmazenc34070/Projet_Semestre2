@@ -12,7 +12,7 @@ class Move extends ObjetPhysique{
             yoyo: true,
             tweens: [
                 { x:    0, y: 170, duration: 1000, ease: 'Stepped' },
-                { x:    0, y: -170, duration: 1000, ease: 'Stepped' },
+                { x:    0, y: -195, duration: 1000, ease: 'Stepped' },
             ]
         });
     }
