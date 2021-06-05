@@ -15,6 +15,7 @@ class Tableau extends Phaser.Scene{
         // this.load.image('spike', 'assets/spike.png');
         this.load.image('boom', 'assets/Boom.png');
         this.load.image('checkpoint', 'assets/Brume1.png');
+        this.load.audio('gunshot', 'assets/Sounds/Laser_Shot.mp3');
 
         // this.load.audio('mobDeath', 'assets/cri.ogg');
         // this.load.audio('getItem', 'assets/poire.ogg');
@@ -92,6 +93,8 @@ class Tableau extends Phaser.Scene{
     tirPlayer(){
         if (Phaser.Input.Keyboard.JustDown(this.boutonTir)){
             this.player.shoot();
+            // if(this.player.rechargeSonTir == false){            
+            // }
         }
     }
     ramasserEtoile (player, star)

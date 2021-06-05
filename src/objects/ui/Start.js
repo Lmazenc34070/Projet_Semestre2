@@ -45,7 +45,7 @@ class Start extends Phaser.GameObjects.Container {
    
             starttextb.alpha = 1;
             starttext.alpha = 1;
-            // Tableau.current.sound.play('clic');
+            Tableau.current.sound.play('clic');
         })
         starttext.on('pointerdown', function (pointer) {
 
@@ -61,7 +61,7 @@ class Start extends Phaser.GameObjects.Container {
 
             quittext.alpha = 0.7;
             quittextb.alpha = 0.7;
-            // Tableau.current.sound.play('clic');
+            Tableau.current.sound.play('clic');
         })
         quittext.on('pointerout', function (pointer) {
 

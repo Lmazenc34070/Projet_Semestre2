@@ -7,7 +7,7 @@ class Speed extends ObjetEnnemi{
      */
     constructor(scene, x, y) {
         super(scene, x, y, "radar");
-        this.setDisplaySize(90,60);
+        this.setDisplaySize(100,60);
         this.setBodySize(this.body.width,this.body.height-10);
         this.setOffset(0,0);
         this.setBounce(1);

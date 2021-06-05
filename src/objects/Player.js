@@ -176,6 +176,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
         if(this.rechargeSonTir === false) {
             this.rechargeSonTir = true;
+            Tableau.current.sound.play('gunshot', {volume: 0.2});
             var bullet = new Tir(this.scene,this.x, this.y);
             console.log("Tir");
             setTimeout(function(){
