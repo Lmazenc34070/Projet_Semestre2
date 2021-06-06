@@ -102,17 +102,26 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             this.sens = -1;
             this.setVelocityX(-450);
             this.anims.play('left', true);
+            if(this.isDead !== true)
+            {
+                this.emit(MyEvents.COURG);
+            }
         }
         else if (this._directionX > 0) {
             this.sens = 1;
             this.setVelocityX(450);
             this.anims.play('right', true);
+            if(this.isDead !== true)
+            {
+                this.emit(MyEvents.COURD);
+            }
         }
 
         else {
             this.setVelocityX(0);
             this.anims.play('stance', true);
             this.anims.play(this.sens === -1 ? 'stance' : 'back', true);
+            this.emit(MyEvents.STOP);
         }
         
         if (this._directionY < 0) {

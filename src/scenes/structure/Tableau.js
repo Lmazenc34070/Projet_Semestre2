@@ -16,6 +16,8 @@ class Tableau extends Phaser.Scene{
         this.load.image('boom', 'assets/Boom.png');
         this.load.image('checkpoint', 'assets/Brume1.png');
         this.load.audio('gunshot', 'assets/Sounds/Laser_Shot.mp3');
+        this.load.audio('bound', 'assets/Sounds/Bounds.mp3');
+
 
         // this.load.audio('mobDeath', 'assets/cri.ogg');
         // this.load.audio('getItem', 'assets/poire.ogg');
@@ -64,6 +66,18 @@ class Tableau extends Phaser.Scene{
         this.pipou=this.add.image(0, 0, 'pipou').setOrigin(0,0);
         this.pipou.displayWidth=14*64;
         this.pipou.setScrollFactor(0,0);
+        this.musicbound = this.sound.add('bound');
+        var musicConfig =
+            {
+                mute: false,
+                volume: 0.2,
+                rate : 1,
+                detune: 0,
+                seek: 0,
+                loop: false,
+                delay:0,
+            }
+        this.config= musicConfig;
         /**
          * Le joueur
          * @type {Player}
@@ -87,6 +101,7 @@ class Tableau extends Phaser.Scene{
     {   
         if(rebond.body.touching.up){
             player.setVelocityY(-850)
+            this.musicbound.play(this.config);
         };
     }
 
@@ -191,7 +206,7 @@ class Tableau extends Phaser.Scene{
             }else{
                 //le joueur est mort
                 if(!me.player.isDead){
-                    // this.mood.stop();
+                    me.musicamb.stop();
                     me.player.isDead=true;
                     me.player.visible=false;
 

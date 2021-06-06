@@ -43,6 +43,8 @@ class RayonLaser extends ObjetPhysique{
          if(!this.here.player.isDead){
             this.here.player.isDead=true;
             this.here.player.visible=false;
+            this.here.musicamb.stop();
+
             this.here.saigne(this.here.player,function(){
                s.player.isDead=false;
                s.scene.restart();

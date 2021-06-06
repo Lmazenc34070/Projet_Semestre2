@@ -32,6 +32,17 @@ class Menu extends Tableau{
         this.back.play();
         this.back.pause();
         this.pasfait = true;
+        var musicConfig =
+            {
+                mute: false,
+                volume: 0.2,
+                rate : 1,
+                detune: 0,
+                seek: 0,
+                loop: true,
+                delay:0,
+            }
+        this.back.play(musicConfig);
        
     }
     update(time,delta) {

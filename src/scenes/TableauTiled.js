@@ -15,13 +15,15 @@ class TableauTiled extends Tableau{
         this.load.image('projo', 'assets/RobotVole.png');
         this.load.image('bouton', 'assets/bouton.png');
         this.load.image('ennemiTombe', 'assets/Boom.png');
+        this.load.image('particD', 'assets/Brume1.png');
+        this.load.image('particG', 'assets/Brume1.png');
 
         this.load.image('night', 'assets/Back_Sci_fi.png');
         this.load.image('star', 'assets/Boom.png');
         this.load.image('fog', 'assets/Brume1.png')
         this.load.image('background', 'assets/Back_Sci_fi4.png');
         this.load.image('pixel', 'assets/pixel.png');
-        this.load.audio('ambiance','assets/Sounds/E_Ressurection.mp3');
+        this.load.audio('ambiance','assets/Sounds/E_Resurrection.mp3');
     }
     create() {
         super.create();
@@ -40,6 +42,60 @@ class TableauTiled extends Tableau{
                 delay:0,
             }
         this.musicamb.play(musicConfig);
+
+        var part = this.add.particles('particD');
+
+        var emmiterPlayerD = part.createEmitter({
+            frequency: 50,
+            lifespan: 500,
+            quantity: 1,
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            scale: { start: 0.8, end: 0.03 },
+            alpha: { start: 1, end: 0.3},
+            blendMode: 'ADD',
+        });
+
+        var part2 = this.add.particles('particG');
+
+        var emmiterPlayerG = part2.createEmitter({
+            frequency: 50,
+            lifespan: 500,
+            quantity: 1,
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            scale: { start: 0.8, end: 0.03 },
+            alpha: { start: 1, end: 0.3},
+            blendMode: 'ADD',
+        });
+
+        this.player.on(MyEvents.COURD, function(){
+            emmiterPlayerD.startFollow(ici.player);
+            emmiterPlayerD.setLifespan(300);
+            emmiterPlayerD.setAlpha({ start: 0.05, end: 0.00001});
+
+            ici.player.isEsc = false;
+        });
+
+        this.player.on(MyEvents.COURG, function(){
+            emmiterPlayerG.startFollow(ici.player);
+            emmiterPlayerG.setLifespan(300);
+            emmiterPlayerG.setAlpha({ start: 0.05, end: 0.00001});
+
+            ici.player.isEsc = false;
+        });
+
+        this.player.on(MyEvents.STOP, function(){
+            setTimeout(function(){
+                emmiterPlayerD.setLifespan(0);
+                emmiterPlayerD.setAlpha(0);
+
+                emmiterPlayerG.setLifespan(0);
+                emmiterPlayerG.setAlpha(0);
+
+                ici.player.isEsc = false;
+                },1);
+        });
 
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
@@ -319,8 +375,6 @@ class TableauTiled extends Tableau{
         this.moveParallax();
         this.laserContainer.each(function (child) {child.update();});
         this.boutonContainer.each(function (child) {child.update();});
-        //optimisation
-        //teste si la caméra a bougé
         let actualPosition=JSON.stringify(this.cameras.main.worldView);
         if(
             !this.previousPosition
