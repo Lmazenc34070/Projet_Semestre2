@@ -142,7 +142,7 @@ class TableauTiled extends Tableau{
         this.plightContainer=this.add.container();
         this.movContainer=this.add.container();
         this.starsFxContainer=this.add.container();
-
+        this.finContainer=this.add.container();
 
         ici.robotMonsterObjects = ici.map.getObjectLayer('robotVole')['objects'];
         ici.robotMonsterObjects.forEach(monsterObject => {
@@ -226,6 +226,13 @@ class TableauTiled extends Tableau{
             this.physics.add.collider(bouton, this.player);
         });
         
+        // ici.finObjects = ici.map.getObjectLayer('Fin')['objects'];
+        // ici.finObjects.forEach(finObject => {
+        //     let fin=new Fin(this,finObject.x,finObject.y);
+        //     this.boutonContainer.add(fin);
+        //     // this.physics.add.collider(fin, this.player);
+        // });
+
         ici.movObjects = ici.map.getObjectLayer('Mov')['objects'];
         ici.movObjects.forEach(movObject => {
             let mov=new Move(this,movObject.x,movObject.y);
@@ -292,22 +299,22 @@ class TableauTiled extends Tableau{
             }
         })
 
-        this.particles4 = this.add.particles('fog');
-        this.emitter = this.particles4.createEmitter(
-        {
-            x: 0, y: 2000, // à changer en fonction d'où tu les places
-            speed: 1000,
-            moveToX: {min:100,max:10000}, // limitesX à changer en fonction d'où tu les places
-            moveToY: {min:846,max:846}, //limitesY  à changer en fonction d'où tu les places
-            rotate: {min:-360,max:360},
-            lifespan: 200000, // pas nécessaire autant ^^
-            quantity: 4,
-            frequency: 1000,
-            delay: 1000,
-            alpha : 0.5,
-            scale: { start: 0.6, end: 0.1 },
-            blendMode: 'NORMAL', 
-        });
+        // this.particles4 = this.add.particles('fog');
+        // this.emitter = this.particles4.createEmitter(
+        // {
+        //     x: 0, y: 2000, // à changer en fonction d'où tu les places
+        //     speed: 1000,
+        //     moveToX: {min:100,max:10000}, // limitesX à changer en fonction d'où tu les places
+        //     moveToY: {min:846,max:846}, //limitesY  à changer en fonction d'où tu les places
+        //     rotate: {min:-360,max:360},
+        //     lifespan: 200000, // pas nécessaire autant ^^
+        //     quantity: 4,
+        //     frequency: 1000,
+        //     delay: 1000,
+        //     alpha : 0.5,
+        //     scale: { start: 0.6, end: 0.1 },
+        //     blendMode: 'NORMAL', 
+        // });
 
 
         //----------débug---------------------
@@ -342,6 +349,7 @@ class TableauTiled extends Tableau{
 
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
+        this.finContainer.setDepth(z--);
         this.monstersContainer.setDepth(z--);
         this.movContainer.setDepth(z--);
 

@@ -30,7 +30,7 @@ class Ui extends Phaser.Scene{
             font:'32px "Hanalei Fill"',
             align: 'right',
             fill: '#fff'
-        })
+        }).setAlpha(0);
 
         /**
          * Le champ texte avec la classe du tableau
@@ -41,7 +41,7 @@ class Ui extends Phaser.Scene{
             font:'24px "Hanalei Fill"',
             align: 'right',
             fill: '#fff',
-        }).setAlpha(0.5)
+        }).setAlpha(0)
 
         this._tableauText.originX=1;
         this._tableauTextClass.originX=1;
@@ -93,6 +93,7 @@ class Ui extends Phaser.Scene{
     {
         this.score+=points;
         this._scoreText.setText('Score: ' + this.score);
+        this._scoreText.setAlpha(0);
     }
     update(){
         if(Tableau.current){

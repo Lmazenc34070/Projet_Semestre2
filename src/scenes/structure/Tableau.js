@@ -50,6 +50,10 @@ class Tableau extends Phaser.Scene{
             'assets/Sprite-Vol.png',
             { frameWidth: 120, frameHeight: 58  }
         );
+        this.load.spritesheet('fin',
+            'assets/Sprite-0002-Sheet.png',
+            { frameWidth: 200, frameHeight: 448  }
+        );
     }
     create(){
         Tableau.current=this;
@@ -100,7 +104,7 @@ class Tableau extends Phaser.Scene{
     Bounding (player, rebond)
     {   
         if(rebond.body.touching.up){
-            player.setVelocityY(-850)
+            player.setVelocityY(-870)
             this.musicbound.play(this.config);
         };
     }
